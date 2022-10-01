@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' href='/bootstrap/bootstrap.min.css' />
+    <link rel='stylesheet' href='/icons' />
+    <link rel='stylesheet' href='/css/index.css' />
+    <title>
+
+
+      {{#if (isundefine profileInfo.username)}}
+        {{globals.server.title}} 
+      {{else}}
+        {{#with profileInfo}}
+          {{name}} (@{{username}}) | {{../globals.server.title}} 
+        {{/with}}
+      {{/if}}
+        
+    </title>
+  </head>
+  <body class='bg-dark text-white'>
+    {{> header}}
+    <div class='container mt-4'>
+      {{{body}}}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<div class='stories'>
+  {{#if (isundefine stories)}}
+    <h3 class='text-center'>No stories</h3>
+  {{else}}
+    <div class='row'>
+      {{#each stories}}
+        <div class='col mb-4'>
+          <div class='story card bg-dark text-white'>
+            <div class='card-body'>
+              {{#if (isvideo type)}}
+                <video controls class='card-img'>
+                  <source src='{{parseProxyUrl url}}' />
+                </video>
+              {{else}}
+                <img src='{{parseProxyUrl url}}' class='card-img' />
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

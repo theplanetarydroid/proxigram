@@ -1,0 +1,19 @@
+.card {
+  max-width: 30rem;
+  min-width: 15rem;
+  min-height: 26rem;
+}
+
+.profile-img {
+  display: grid;
+  place-content: center;
+  margin-bottom: 14px;
+}
+
+.form-select {
+  max-width: 35%;
+}
+
+.search-form {
+  max-width: 400px;
+}

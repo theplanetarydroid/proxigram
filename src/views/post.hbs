@@ -1,0 +1,31 @@
+{{#with post}}
+  <div class='post' style='display:grid;place-content:center;margin:40px auto;'>
+    <div
+      class='card bg-dark text-white'
+      style='max-width:20rem;width:min-content;'
+    >
+      {{#each medias}}
+        {{#with this}}
+          {{#if (isvideo type)}}
+            <video controls width='300'>
+              <source src='{{parseProxyUrl originalUrl}}' />
+            </video>
+          {{else}}
+            <img src='{{parseProxyUrl url}}' alt='{{text}}' />
+          {{/if}}
+        {{/with}}
+      {{/each}}
+
+      <div class='card-body'>
+        <p class='card-text'>
+          {{text}}
+        </p>
+      </div>
+      <div class='card-footer'>
+        <i class='bi bi-heart'>
+          {{likes.formated}}
+        </i>
+      </div>
+    </div>
+  </div>
+{{/with}}

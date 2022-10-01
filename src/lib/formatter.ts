@@ -1,0 +1,1 @@
+export const formatter = (lang: string) => Intl.NumberFormat(lang, { notation: 'compact' })

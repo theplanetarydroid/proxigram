@@ -1,0 +1,33 @@
+<div class='posts'>
+  {{#if ../profileInfo.isPrivate}}
+  <h3 class='text-center'>Private profile</h3>
+  {{else}}
+  <div class='row'>
+    {{#each posts}}
+    {{#with this}}
+    <div class='col mb-4'>
+      <div class='post card bg-dark text-white'>
+        <a href='/@/{{../profileInfo.username}}/{{@index}}'>
+          <img src='{{parseProxyUrl photo}}' alt='{{truncate text}}' class='card-img'
+            style="height:286px;object-fit:cover;" />
+        </a>
+        <div class='card-body'>
+          <p class='card-text'>
+            {{truncate text}}
+          </p>
+        </div>
+        <div class='card-footer d-flex justify-content-between'>
+          <i class="bi bi-heart">
+            {{likes.formated}}
+          </i>
+          <i class="bi bi-collection">
+            {{length medias}}
+          </i>
+        </div>
+      </div>
+    </div>
+    {{/with}}
+    {{/each}}
+  </div>
+  {{/if}}
+</div>

@@ -1,0 +1,40 @@
+{{#with profileInfo}}
+  <div class='profile p-3 m-3'>
+    <div class='row'>
+      <div class='profile-img'>
+        <img
+          src='{{parseProxyUrl avatar}}'
+          alt='profile picture of {{username}}'
+          class='rounded float-start'
+        />
+      </div>
+      <div class='col text-center'>
+        <div class='body mb-3'>
+          <h3 class='fw-bold'>{{name}}</h3>
+          <p>{{bio}}</p>
+          <a
+            href='{{website}}'
+            target='_blank'
+            rel='noopener noreferrer'
+          >{{website}}</a>
+        </div>
+        <div class='stats'>
+          <div class='row'>
+            <div class='col'>
+              Publications:
+              <strong>{{publication.formated}}</strong>
+            </div>
+            <div class='col'>
+              Followers:
+              <strong>{{subscriber.formated}}</strong>
+            </div>
+            <div class='col'>
+              Following:
+              <strong>{{subscription.formated}}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/with}}

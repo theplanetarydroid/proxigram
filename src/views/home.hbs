@@ -1,0 +1,28 @@
+<div class='row align-items-center' style='height: 70vh;'>
+  <div class='col'>
+    <p class='h1 text-center fw-bold mt-5'>
+      Welcome to
+      {{globals.server.title}}!
+    </p>
+    <p class='text-center fw-semibold'>A privacy and open source alternative
+      frontend for instagram</p>
+    <form class='w-90 m-auto search-form' method='get' action='/redirect'>
+      <div class='input-group'>
+        <input
+          type='text'
+          class='form-control bg-dark text-white'
+          placeholder='Search'
+          name='term'
+        />
+        <select class='form-select bg-dark text-white' name='type'>
+          <option value='profile'>
+            Username
+          </option>
+        </select>
+        <button class='btn btn-primary'>
+          <i class='bi bi-search'></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
