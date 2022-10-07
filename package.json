@@ -1,13 +1,14 @@
 {
   "name": "proxigram",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "A privacy and open source alternative frontend for instagram",
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "clean": "shx rm -rf dist/",
-    "build": "node esbuild.config.js"
+    "build": "node esbuild.config.js",
+    "sui": "sui-mono"
   },
   "keywords": [
     "instagram",
