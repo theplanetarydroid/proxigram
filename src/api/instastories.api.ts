@@ -5,7 +5,7 @@ class InstaStoriesAPI extends API {
   async getProfileContent(username: string): Promise<InstaStoriesResponse> {
     return await this.apiCall(() =>
       this.api.get(`/profile?username=${username.toLowerCase()}`)
-    )
+      , { cache: { username: username } })
   }
 }
 

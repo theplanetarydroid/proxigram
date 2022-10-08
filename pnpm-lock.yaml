@@ -6,6 +6,7 @@ specifiers:
   axios: ^0.27.2
   bootstrap: ^5.2.1
   bootstrap-icons: ^1.9.1
+  dotenv: ^16.0.3
   esbuild: ^0.15.9
   esbuild-node-externals: ^1.5.0
   esbuild-plugin-handlebars: ^1.0.0
@@ -14,28 +15,31 @@ specifiers:
   handlebars: ^4.7.7
   http-proxy-middleware: ^2.0.6
   nodemon: ^2.0.20
+  redis: ^4.3.1
   shx: ^0.3.4
   ts-node: ^10.9.1
   typescript: ^4.8.3
 
 dependencies:
   axios: 0.27.2
-  bootstrap: 5.2.1_@popperjs+core@2.11.6
+  bootstrap: 5.2.1
   bootstrap-icons: 1.9.1
   esbuild-plugin-handlebars: 1.0.0
   express: 4.18.1
   express-handlebars: 6.0.6
   handlebars: 4.7.7
   http-proxy-middleware: 2.0.6_@types+express@4.17.14
+  redis: 4.3.1
 
 devDependencies:
   '@s-ui/mono': 2.31.0
   '@types/express': 4.17.14
+  dotenv: 16.0.3
   esbuild: 0.15.9
   esbuild-node-externals: 1.5.0_esbuild@0.15.9
   nodemon: 2.0.20
   shx: 0.3.4
-  ts-node: 10.9.1_ke6ijd35va4xbeayrnhu4zwagm
+  ts-node: 10.9.1_typescript@4.8.3
   typescript: 4.8.3
 
 packages:
@@ -107,8 +111,53 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@popperjs/core/2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+  /@redis/bloom/1.0.2_@redis+client@1.3.0:
+    resolution: {integrity: sha512-EBw7Ag1hPgFzdznK2PBblc1kdlj5B5Cw3XwI9/oG7tSn85/HKy3X9xHy/8tm/eNXJYHLXHJL/pkwBpFMVVefkw==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.3.0
+    dev: false
+
+  /@redis/client/1.3.0:
+    resolution: {integrity: sha512-XCFV60nloXAefDsPnYMjHGtvbtHR8fV5Om8cQ0JYqTNbWcQo/4AryzJ2luRj4blveWazRK/j40gES8M7Cp6cfQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      cluster-key-slot: 1.1.0
+      generic-pool: 3.8.2
+      yallist: 4.0.0
+    dev: false
+
+  /@redis/graph/1.0.1_@redis+client@1.3.0:
+    resolution: {integrity: sha512-oDE4myMCJOCVKYMygEMWuriBgqlS5FqdWerikMoJxzmmTUErnTRRgmIDa2VcgytACZMFqpAOWDzops4DOlnkfQ==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.3.0
+    dev: false
+
+  /@redis/json/1.0.4_@redis+client@1.3.0:
+    resolution: {integrity: sha512-LUZE2Gdrhg0Rx7AN+cZkb1e6HjoSKaeeW8rYnt89Tly13GBI5eP4CwDVr+MY8BAYfCg4/N15OUrtLoona9uSgw==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.3.0
+    dev: false
+
+  /@redis/search/1.1.0_@redis+client@1.3.0:
+    resolution: {integrity: sha512-NyFZEVnxIJEybpy+YskjgOJRNsfTYqaPbK/Buv6W2kmFNaRk85JiqjJZA5QkRmWvGbyQYwoO5QfDi2wHskKrQQ==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.3.0
+    dev: false
+
+  /@redis/time-series/1.0.3_@redis+client@1.3.0:
+    resolution: {integrity: sha512-OFp0q4SGrTH0Mruf6oFsHGea58u8vS/iI5+NpYdicaM+7BgqBZH8FFvNZ8rYYLrUO/QRqMq72NpXmxLVNcdmjA==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.3.0
     dev: false
 
   /@s-ui/helpers/1.38.0:
@@ -335,12 +384,10 @@ packages:
     resolution: {integrity: sha512-d4ZkO30MIkAhQ2nNRJqKXJVEQorALGbLWTuRxyCTJF96lRIV6imcgMehWGJUiJMJhglN0o2tqLIeDnMdiQEE9g==}
     dev: false
 
-  /bootstrap/5.2.1_@popperjs+core@2.11.6:
+  /bootstrap/5.2.1:
     resolution: {integrity: sha512-UQi3v2NpVPEi1n35dmRRzBJFlgvWHYwyem6yHhuT6afYF+sziEt46McRbT//kVXZ7b1YUYEVGdXEH74Nx3xzGA==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
-    dependencies:
-      '@popperjs/core': 2.11.6
     dev: false
 
   /brace-expansion/1.1.11:
@@ -418,6 +465,11 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
     dev: true
+
+  /cluster-key-slot/1.1.0:
+    resolution: {integrity: sha512-2Nii8p3RwAPiFwsnZvukotvow2rIHM+yQ6ZcBXGHdniadkYGZYiGmkHJIbZPIV9nfv7m/U1IPMVVcAhoWFeklw==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -717,6 +769,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       is-obj: 2.0.0
+    dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /ee-first/1.1.1:
@@ -1151,6 +1208,11 @@ packages:
 
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
+
+  /generic-pool/3.8.2:
+    resolution: {integrity: sha512-nGToKy6p3PAbYQ7p1UlWl6vSPwfwU6TMSWK7TTu+WUY4ZjyZQGniGGt2oNVvyNSpyZYSB43zMXVLcBm08MTMkg==}
+    engines: {node: '>= 4'}
+    dev: false
 
   /get-caller-file/2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
@@ -2053,6 +2115,17 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
+  /redis/4.3.1:
+    resolution: {integrity: sha512-cM7yFU5CA6zyCF7N/+SSTcSJQSRMEKN0k0Whhu6J7n9mmXRoXugfWDBo5iOzGwABmsWKSwGPTU5J4Bxbl+0mrA==}
+    dependencies:
+      '@redis/bloom': 1.0.2_@redis+client@1.3.0
+      '@redis/client': 1.3.0
+      '@redis/graph': 1.0.1_@redis+client@1.3.0
+      '@redis/json': 1.0.4_@redis+client@1.3.0
+      '@redis/search': 1.1.0_@redis+client@1.3.0
+      '@redis/time-series': 1.0.3_@redis+client@1.3.0
+    dev: false
+
   /require-directory/2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -2337,7 +2410,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-node/10.9.1_ke6ijd35va4xbeayrnhu4zwagm:
+  /ts-node/10.9.1_typescript@4.8.3:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -2356,7 +2429,6 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 18.7.21
       acorn: 8.8.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -2487,7 +2559,6 @@ packages:
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-    dev: true
 
   /yargs-parser/20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}

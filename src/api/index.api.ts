@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import config from '../config';
+import { client } from '../lib/cache';
 
 const headers = {
     'user-agent':
@@ -15,9 +16,23 @@ export class API {
         });
     }
 
-    async apiCall(request: () => Promise<AxiosResponse<any, any>>): Promise<any> {
+    async apiCall(request: () => Promise<AxiosResponse<any, any>>, options?: { cache: { username: string } }): Promise<any> {
         try {
-            return (await request()).data;
+            const username = options?.cache.username
+
+            if (username && client) {
+                const cacheData = await client.get(username)
+                if (cacheData) {
+                    return JSON.parse(cacheData)
+                } else {
+                    const { data } = await request();
+                    await client.set(username, JSON.stringify(data))
+                    await client.expire(username, config.cache.expiresIn)
+                    return data;
+                }
+
+            }
+            return (await request()).data
         } catch (e: any) {
             throw e;
         }
