@@ -18,21 +18,19 @@ export class API {
 
     async apiCall(request: () => Promise<AxiosResponse<any, any>>, options?: { cache: { username: string } }): Promise<any> {
         try {
-            const username = options?.cache.username
-
-            if (username && client) {
-                const cacheData = await client.get(username)
-                if (cacheData) {
-                    return JSON.parse(cacheData)
-                } else {
-                    const { data } = await request();
-                    await client.set(username, JSON.stringify(data))
-                    await client.expire(username, config.cache.expiresIn)
-                    return data;
-                }
-
+            const username = options?.cache.username;
+            if (!username || !client) {
+                return (await request()).data
             }
-            return (await request()).data
+
+            const cacheData = await client.get(username)
+            if (!cacheData) {
+                const { data } = await request();
+                await client.setEx(username, config.cache.expiresIn, JSON.stringify(data))
+                return data;
+            }
+
+            return JSON.parse(cacheData)
         } catch (e: any) {
             throw e;
         }
