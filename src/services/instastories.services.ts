@@ -38,7 +38,7 @@ export class InstastoriesService implements IGetProfile, IGetPosts, IGetStories 
         publication.items.forEach((post) => {
             const medias: IMedia[] = post.medias
                 .map((story) => ({
-                    id: story.url.split('/').at(-1),
+                    id: story.id,
                     url: story.url,
                     originalUrl: story.originalUrl,
                     type: story.type,
